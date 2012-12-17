@@ -1,0 +1,9 @@
+tokyo:
+  name: tokyo
+  lat:  1.0
+  lng:  2.0
+
+osaka:
+  name: osaka
+  lat:  3.0
+  lng:  4.0
