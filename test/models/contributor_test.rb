@@ -10,21 +10,15 @@ class ContributorTest < ActiveSupport::TestCase
   end
 
   test "repository is not null" do
-    @contributor.repository_id = nil
-    assert !@contributor.valid?
-    assert_equal 1, @contributor.errors.size
+    check @contributor, :repository_id, nil
   end
 
   test "user is not null" do
-    @contributor.user_id = nil
-    assert !@contributor.valid?
-    assert_equal 1, @contributor.errors.size
+    check @contributor, :user_id, nil
   end
 
   test "contributions is not null" do
-    @contributor.contributions = nil
-    assert !@contributor.valid?
-    assert_equal 1, @contributor.errors.size
+    check @contributor, :contributions, nil
   end
 
   test "contributor belongs to user" do
@@ -34,5 +28,4 @@ class ContributorTest < ActiveSupport::TestCase
   test "contributor belongs to repository" do
     assert @contributor.repository.is_a?(Repository)
   end
-
 end

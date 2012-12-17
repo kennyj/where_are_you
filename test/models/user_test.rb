@@ -8,51 +8,35 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "login is not null" do
-    @user.login = nil
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :login, nil
   end
 
   test "github_id is not null" do
-    @user.github_id = nil
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :github_id, nil
   end
 
   test "type is not null" do
-    @user.type = nil
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :type, nil
   end
 
   test "name is not null" do
-    @user.name = nil
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :name, nil
   end
 
   test "email is not null" do
-    @user.email = nil
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :email, nil
   end
 
   test "location is not null" do
-    @user.location = nil
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :location, nil
   end
 
   test "login is uniqueness" do
-    @user.login = "kennyj"
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :login, "kennyj"
   end
 
   test "github_id is uniqueness" do
-    @user.github_id = 13426
-    assert !@user.valid?
-    assert_equal 1, @user.errors.size
+    check @user, :github_id, 13426
   end
 
   test "user belongs to location" do

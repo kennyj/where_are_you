@@ -14,45 +14,31 @@ class RepositoryTest < ActiveSupport::TestCase
   end
 
   test "github_id is not null" do
-    @repository.github_id = nil
-    assert !@repository.valid?
-    assert_equal 1, @repository.errors.size
+    check @repository, :github_id, nil
   end
 
   test "name is not null" do
-    @repository.name = nil
-    assert !@repository.valid?
-    assert_equal 1, @repository.errors.size
+    check @repository, :name, nil
   end
 
   test "full_name is not null" do
-    @repository.full_name = nil
-    assert !@repository.valid?
-    assert_equal 1, @repository.errors.size
+    check @repository, :full_name, nil
   end
 
   test "user is not null" do
-    @repository.user = nil
-    assert !@repository.valid?
-    assert_equal 1, @repository.errors.size
+    check @repository, :user, nil
   end
 
   test "fork is not null" do
-    @repository.fork = nil
-    assert !@repository.valid?
-    assert_equal 1, @repository.errors.size
+    check @repository, :fork, nil
   end
 
   test "github_id is uniqueness" do
-    @repository.github_id = repositories(:kennyj_java_bin).github_id
-    assert !@repository.valid?
-    assert_equal 1, @repository.errors.size
+    check @repository, :github_id, repositories(:kennyj_java_bin).github_id
   end
 
   test "full_name is uniqueness" do
-    @repository.full_name = repositories(:kennyj_java_bin).full_name
-    assert !@repository.valid?
-    assert_equal 1, @repository.errors.size
+    check @repository, :full_name, repositories(:kennyj_java_bin).full_name
   end
 
   test "repository belongs to user" do

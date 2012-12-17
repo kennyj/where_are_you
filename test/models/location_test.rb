@@ -6,27 +6,19 @@ class LocationTest < ActiveSupport::TestCase
   end
 
   test "name is not null" do
-    @location.name = nil
-    assert !@location.valid?
-    assert_equal 1,  @location.errors.size
+    check @location, :name, nil
   end
 
   test "lat is not null" do
-    @location.lat = nil
-    assert !@location.valid?
-    assert_equal 1,  @location.errors.size
+    check @location, :lat, nil
   end
 
   test "lng is not null" do
-    @location.lng = nil
-    assert !@location.valid?
-    assert_equal 1,  @location.errors.size
+    check @location, :lng, nil
   end
 
   test "name is uniqueness" do
-    @location.name = "osaka"
-    assert !@location.valid?
-    assert_equal 1,  @location.errors.size
+    check @location, :name, "osaka"
   end
 
   test "has many users" do
