@@ -39,3 +39,5 @@ gem 'turbolinks'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'octokit'
