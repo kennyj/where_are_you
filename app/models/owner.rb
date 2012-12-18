@@ -23,5 +23,4 @@ class Owner < ActiveRecord::Base
   rescue Octokit::NotFound => e
     raise ActiveRecord::RecordNotFound.new(e)
   end
-
 end
