@@ -30,6 +30,7 @@ class RepositoryTest < ActiveSupport::TestCase
   end
 
   test "fork is not null" do
+    skip
     check @repository, :fork, nil
   end
 
@@ -47,6 +48,24 @@ class RepositoryTest < ActiveSupport::TestCase
 
   test "repository has many contributors" do
     assert @repository.contributors.empty?
+  end
+
+  test "create from api" do
+    User.stubs(:create_or_update_from_api).returns(owners(:kennyj))
+    repo = Repository.create_or_update_from_api("kennyj/where_are_you")
+    assert repo.persisted?
+    assert_equal "kennyj/where_are_you", repo.full_name
+  end
+
+  test "update from api" do
+    User.stubs(:create_or_update_from_api).returns(owners(:kennyj))
+    repo = Repository.create_or_update_from_api("kennyj/java_bin")
+    assert repo.persisted?
+    assert_equal "kennyj/java_bin", repo.full_name
+  end
+
+  test "invalid repo" do
+    assert_raise(ActiveRecord::RecordNotFound) { Repository.create_or_update_from_api("kennyj/xxx") }
   end
 
 end

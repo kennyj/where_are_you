@@ -22,10 +22,6 @@ class UserTest < ActiveSupport::TestCase
     check @user, :name, nil
   end
 
-  test "email is not null" do
-    check @user, :email, nil
-  end
-
   test "login is uniqueness" do
     check @user, :login, "kennyj"
   end
@@ -38,4 +34,19 @@ class UserTest < ActiveSupport::TestCase
     assert @user.contributors.empty?
   end
 
+  test "create from api" do
+    repo = User.create_or_update_from_api("fukajun")
+    assert repo.persisted?
+    assert_equal "fukajun", repo.login
+  end
+
+  test "update from api" do
+    repo = User.create_or_update_from_api("kennyj")
+    assert repo.persisted?
+    assert_equal "kennyj", repo.login
+  end
+
+  test "invalid user" do
+    assert_raise(ActiveRecord::RecordNotFound) { User.create_or_update_from_api("yyyxxx") }
+  end
 end

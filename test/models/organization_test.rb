@@ -28,4 +28,20 @@ class OrganizationTest < ActiveSupport::TestCase
   test "organization hasn't many contributors" do
     assert !@org.respond_to?(:contributors)
   end
+
+  test "create from api" do
+    repo = Organization.create_or_update_from_api("jquery")
+    assert repo.persisted?
+    assert_equal "jquery", repo.login
+  end
+
+  test "update from api" do
+    repo = Organization.create_or_update_from_api("rails")
+    assert repo.persisted?
+    assert_equal "rails", repo.login
+  end
+
+  test "invalid organization" do
+    assert_raise(ActiveRecord::RecordNotFound) { Organization.create_or_update_from_api("yyyxxx") }
+  end
 end
