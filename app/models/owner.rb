@@ -2,7 +2,7 @@ class Owner < ActiveRecord::Base
   validates_presence_of   :login, :github_id, :type
   validates_uniqueness_of :login, :github_id
 
-  def self.create_or_update_from_api(login, client = Octokit::Client.new(login: Github.login, password: Github.password))
+  def self.create_or_update_from_api(login, client = Github.client)
     remote = client.user(login)
 
     repo = Object.const_get(remote.type).find_or_initialize_by(github_id: remote.id)
