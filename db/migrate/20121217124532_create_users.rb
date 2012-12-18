@@ -9,7 +9,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :name, null: false
       t.string  :company
       t.string  :blog
-      t.belongs_to :location, index: true, null: false
+      t.string  :location
+      # t.belongs_to :location, index: true, null: false
       t.string  :email, null: false
       t.boolean :hireable
       t.string  :bio

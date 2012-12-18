@@ -2,9 +2,8 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @user = User.new(login: "foo", github_id: "9" * 11, type: "User",
-                     name: "Foo", email: "foo@bar.com",
-                     location_id: locations(:tokyo).id)
+    @user = User.new login: "foo", github_id: "9" * 11, type: "User",
+                     name: "Foo", email: "foo@bar.com"
   end
 
   test "login is not null" do
@@ -27,20 +26,12 @@ class UserTest < ActiveSupport::TestCase
     check @user, :email, nil
   end
 
-  test "location is not null" do
-    check @user, :location, nil
-  end
-
   test "login is uniqueness" do
     check @user, :login, "kennyj"
   end
 
   test "github_id is uniqueness" do
     check @user, :github_id, 13426
-  end
-
-  test "user belongs to location" do
-    assert @user.location.is_a?(Location)
   end
 
   test "user has many contributors" do

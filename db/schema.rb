@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20121217124703) do
     t.string   "name",        null: false
     t.string   "company"
     t.string   "blog"
-    t.integer  "location_id", null: false
+    t.string   "location"
     t.string   "email",       null: false
     t.boolean  "hireable"
     t.string   "bio"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20121217124703) do
   end
 
   add_index "users", ["github_id"], name: "index_users_on_github_id", unique: true
-  add_index "users", ["location_id"], name: "index_users_on_location_id"
   add_index "users", ["login"], name: "index_users_on_login", unique: true
 
 end
