@@ -74,5 +74,8 @@ class RepositoryTest < ActiveSupport::TestCase
       repo.refresh_contributors_from_api
       assert repo.contributors.size >= 3
     end
+    assert_no_difference("Contributor.count") do
+      repo.refresh_contributors_from_api
+    end
   end
 end
