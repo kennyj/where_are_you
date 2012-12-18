@@ -1,7 +1,7 @@
 class CreateRepositories < ActiveRecord::Migration
   def change
     create_table :repositories do |t|
-      t.belongs_to :user, index: true
+      t.belongs_to :owner, index: true
       t.integer :github_id, null: false
       t.string  :name, null: false
       t.string  :full_name, null: false

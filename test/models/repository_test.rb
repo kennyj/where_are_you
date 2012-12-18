@@ -6,7 +6,7 @@ class RepositoryTest < ActiveSupport::TestCase
       github_id: 9999999999,
       name: "bar",
       full_name: "kennyj/bar",
-      user_id: users(:kennyj).id,
+      owner_id: users(:kennyj).id,
       description: "bar is dummy project",
       fork: true,
       homepage: "http://bar.com"
@@ -25,8 +25,8 @@ class RepositoryTest < ActiveSupport::TestCase
     check @repository, :full_name, nil
   end
 
-  test "user is not null" do
-    check @repository, :user, nil
+  test "owner is not null" do
+    check @repository, :owner, nil
   end
 
   test "fork is not null" do
@@ -41,11 +41,11 @@ class RepositoryTest < ActiveSupport::TestCase
     check @repository, :full_name, repositories(:kennyj_java_bin).full_name
   end
 
-  test "repository belongs to user" do
-    assert @repository.user.is_a?(User)
+  test "repository belongs to owner" do
+    assert @repository.owner.is_a?(User)
   end
 
-  test "user has many contributors" do
+  test "repository has many contributors" do
     assert @repository.contributors.empty?
   end
 

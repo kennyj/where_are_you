@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20121217124703) do
   add_index "locations", ["updated_at"], name: "index_locations_on_updated_at"
 
   create_table "repositories", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.integer  "github_id",   null: false
     t.string   "name",        null: false
     t.string   "full_name",   null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20121217124703) do
 
   add_index "repositories", ["full_name"], name: "index_repositories_on_full_name", unique: true
   add_index "repositories", ["github_id"], name: "index_repositories_on_github_id", unique: true
-  add_index "repositories", ["user_id"], name: "index_repositories_on_user_id"
+  add_index "repositories", ["owner_id"], name: "index_repositories_on_owner_id"
 
   create_table "users", force: true do |t|
     t.string   "login",       null: false
