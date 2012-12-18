@@ -41,3 +41,4 @@ gem 'turbolinks'
 # gem 'debugger'
 
 gem 'octokit'
+gem "mocha", :require => false
