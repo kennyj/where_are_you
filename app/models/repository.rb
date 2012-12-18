@@ -21,4 +21,18 @@ class Repository < ActiveRecord::Base
   rescue Octokit::NotFound => e
     raise ActiveRecord::RecordNotFound.new(e)
   end
+
+  def refresh_contributors_from_api(client = Github.client)
+    self.class.transaction do
+      Contributor.destroy_all(["repository_id = ?", self.id])
+      client.contributors(self.full_name, false).each do |c|
+        klazz = Object.const_get(c.type)
+        owner = klazz.find_by_github_id(c.id) || klazz.create_or_update_from_api(c.login, client)
+        model = Contributor.new(owner_id: owner.id,
+                                 repository_id: self.id,
+                                 contributions: c.contributions)
+        model.save!
+      end
+    end
+  end
 end

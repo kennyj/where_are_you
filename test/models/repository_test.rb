@@ -68,4 +68,11 @@ class RepositoryTest < ActiveSupport::TestCase
     assert_raise(ActiveRecord::RecordNotFound) { Repository.create_or_update_from_api("kennyj/xxx") }
   end
 
+  test "refresh_contributors_from_api" do
+    repo = repositories(:kennyj_java_bin)
+    assert_difference("User.count", 2) do
+      repo.refresh_contributors_from_api
+      assert repo.contributors.size >= 3
+    end
+  end
 end
