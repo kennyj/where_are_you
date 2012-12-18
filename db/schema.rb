@@ -14,16 +14,16 @@
 ActiveRecord::Schema.define(version: 20121217124703) do
 
   create_table "contributors", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.integer  "repository_id"
     t.integer  "contributions", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "contributors", ["owner_id"], name: "index_contributors_on_owner_id"
   add_index "contributors", ["repository_id", "contributions"], name: "index_contributors_on_repository_id_and_contributions"
   add_index "contributors", ["repository_id"], name: "index_contributors_on_repository_id"
-  add_index "contributors", ["user_id"], name: "index_contributors_on_user_id"
 
   create_table "locations", force: true do |t|
     t.string   "name",       null: false
@@ -35,6 +35,26 @@ ActiveRecord::Schema.define(version: 20121217124703) do
 
   add_index "locations", ["name"], name: "index_locations_on_name", unique: true
   add_index "locations", ["updated_at"], name: "index_locations_on_updated_at"
+
+  create_table "owners", force: true do |t|
+    t.string   "login",       null: false
+    t.integer  "github_id",   null: false
+    t.string   "avatar_url"
+    t.string   "gravatar_id"
+    t.string   "type",        null: false
+    t.string   "name"
+    t.string   "company"
+    t.string   "blog"
+    t.string   "location"
+    t.string   "email"
+    t.boolean  "hireable"
+    t.string   "bio"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "owners", ["github_id"], name: "index_owners_on_github_id", unique: true
+  add_index "owners", ["login"], name: "index_owners_on_login", unique: true
 
   create_table "repositories", force: true do |t|
     t.integer  "owner_id"
@@ -51,25 +71,5 @@ ActiveRecord::Schema.define(version: 20121217124703) do
   add_index "repositories", ["full_name"], name: "index_repositories_on_full_name", unique: true
   add_index "repositories", ["github_id"], name: "index_repositories_on_github_id", unique: true
   add_index "repositories", ["owner_id"], name: "index_repositories_on_owner_id"
-
-  create_table "users", force: true do |t|
-    t.string   "login",       null: false
-    t.integer  "github_id",   null: false
-    t.string   "avatar_url"
-    t.string   "gravatar_id"
-    t.string   "type",        null: false
-    t.string   "name",        null: false
-    t.string   "company"
-    t.string   "blog"
-    t.string   "location"
-    t.string   "email",       null: false
-    t.boolean  "hireable"
-    t.string   "bio"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users", ["github_id"], name: "index_users_on_github_id", unique: true
-  add_index "users", ["login"], name: "index_users_on_login", unique: true
 
 end

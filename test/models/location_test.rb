@@ -21,9 +21,4 @@ class LocationTest < ActiveSupport::TestCase
     check @location, :name, "osaka"
   end
 
-  test "has many users" do
-    skip
-    assert @location.users.empty?
-  end
-
 end

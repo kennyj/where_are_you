@@ -6,7 +6,7 @@ class RepositoryTest < ActiveSupport::TestCase
       github_id: 9999999999,
       name: "bar",
       full_name: "kennyj/bar",
-      owner_id: users(:kennyj).id,
+      owner: owners(:kennyj),
       description: "bar is dummy project",
       fork: true,
       homepage: "http://bar.com"

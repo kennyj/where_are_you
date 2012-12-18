@@ -1,6 +1,6 @@
 kennyj_java_bin:
   github_id: 463846
-  name: java_bin
+  name: "java_bin"
   full_name: "kennyj/java_bin"
   owner: kennyj
   description: "Apache Solr JavaBin format (binary format) implementation for Ruby "

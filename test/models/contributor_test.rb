@@ -3,26 +3,26 @@ require 'test_helper'
 class ContributorTest < ActiveSupport::TestCase
   setup do
     @contributor = Contributor.new(
-      repository_id: repositories(:kennyj_java_bin).id,
-      user_id: users(:kennyj).id,
+      owner: owners(:kennyj),
+      repository: repositories(:kennyj_java_bin),
       contributions: 999
     )
   end
 
   test "repository is not null" do
-    check @contributor, :repository_id, nil
+    check @contributor, :repository, nil
   end
 
-  test "user is not null" do
-    check @contributor, :user_id, nil
+  test "owner is not null" do
+    check @contributor, :owner, nil
   end
 
   test "contributions is not null" do
     check @contributor, :contributions, nil
   end
 
-  test "contributor belongs to user" do
-    assert @contributor.user.is_a?(User)
+  test "contributor belongs to owner" do
+    assert @contributor.owner.is_a?(User)
   end
 
   test "contributor belongs to repository" do

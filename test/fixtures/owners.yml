@@ -12,3 +12,8 @@ kennyj:
   bio: null
   location: "osaka, japan"
 
+rails:
+  login: "rails"
+  github_id: 4223
+  blog: "http://weblog.rubyonrails.org/"
+  type: "Organization"

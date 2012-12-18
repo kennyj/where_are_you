@@ -1,6 +1,4 @@
-class User < ActiveRecord::Base
-  validates_presence_of   :login, :github_id, :type, :name, :email
-  validates_uniqueness_of :login, :github_id
-
+class User < Owner
+  validates_presence_of :name, :email
   has_many :contributors
 end
