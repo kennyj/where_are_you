@@ -5,7 +5,7 @@ class Repository < ActiveRecord::Base
   belongs_to :owner
   has_many :contributors
 
-  def self.create_or_update_from_api(full_name, client = Octokit::Client.new(login: "kennyj", password: "xxxxx"))
+  def self.create_or_update_from_api(full_name, client = Octokit::Client.new(login: Github.login, password: Github.password))
     remote = client.repo(full_name)
 
     repo = self.find_or_initialize_by(github_id: remote.id)

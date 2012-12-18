@@ -42,3 +42,5 @@ gem 'turbolinks'
 
 gem 'octokit'
 gem "mocha", :require => false
+gem "settingslogic"
+
