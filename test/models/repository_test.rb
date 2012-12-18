@@ -77,5 +77,6 @@ class RepositoryTest < ActiveSupport::TestCase
     assert_no_difference("Contributor.count") do
       repo.refresh_contributors_from_api
     end
+    assert_equal repo.contributors, repo.contributors.sort { |l,r| -(l.contributions <=> r.contributions) }
   end
 end
