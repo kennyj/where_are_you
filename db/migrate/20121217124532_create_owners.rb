@@ -12,7 +12,7 @@ class CreateOwners < ActiveRecord::Migration
       t.string  :location
       t.string  :email
       t.boolean :hireable
-      t.string  :bio
+      t.text    :bio
       t.timestamps
     end
     add_index :owners, :login, unique: true

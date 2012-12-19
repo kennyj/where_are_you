@@ -18,10 +18,6 @@ class UserTest < ActiveSupport::TestCase
     check @user, :type, nil
   end
 
-  test "name is not null" do
-    check @user, :name, nil
-  end
-
   test "login is uniqueness" do
     check @user, :login, "kennyj"
   end

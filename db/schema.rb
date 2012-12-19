@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20121217124703) do
     t.string   "location"
     t.string   "email"
     t.boolean  "hireable"
-    t.string   "bio"
+    t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
