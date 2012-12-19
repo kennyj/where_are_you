@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: f6d0eda918756bf56e2c05afcaaabda723487017
+  revision: 15c40b2ef51120974edc626106de69faa53dfc3f
   specs:
     actionmailer (4.0.0.beta)
       actionpack (= 4.0.0.beta)
@@ -121,6 +121,7 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.5.0)
     multipart-post (1.1.5)
+    mysql2 (0.3.11)
     octokit (1.19.0)
       addressable (~> 2.2)
       faraday (~> 0.8)
@@ -166,6 +167,7 @@ DEPENDENCIES
   journey!
   jquery-rails
   mocha
+  mysql2
   octokit
   rails (= 4.0.0.beta)!
   sass-rails (~> 4.0.0.beta)!
