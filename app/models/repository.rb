@@ -3,7 +3,7 @@ class Repository < ActiveRecord::Base
   # validates_presence_of :fork
   validates_uniqueness_of :github_id, :full_name
   belongs_to :owner
-  has_many :contributors, order: "contributions desc"
+  has_many :contributors, -> { order("contributions desc") }
 
   def self.create_or_update_from_api(full_name, client = Github.client)
     remote = client.repo(full_name)
