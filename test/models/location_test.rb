@@ -9,16 +9,18 @@ class LocationTest < ActiveSupport::TestCase
     check @location, :name, nil
   end
 
-  test "lat is not null" do
-    check @location, :lat, nil
-  end
-
-  test "lng is not null" do
-    check @location, :lng, nil
-  end
-
   test "name is uniqueness" do
     check @location, :name, "osaka"
   end
 
+  test "status is CODED if lat/lng are assigned" do
+    @location.save
+    assert Location::CODED, @location.status
+  end
+
+  test "status is UNCODED if lat/lng aren't assigned" do
+    @location.lat = @location.lng = nil
+    @location.save
+    assert Location::UNCODED, @location.status
+  end
 end

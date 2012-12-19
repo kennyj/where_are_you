@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121217124703) do
+ActiveRecord::Schema.define(version: 20121219152544) do
 
   create_table "contributors", force: true do |t|
     t.integer  "owner_id"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20121217124703) do
 
   create_table "locations", force: true do |t|
     t.string   "name",       null: false
-    t.float    "lat",        null: false
-    t.float    "lng",        null: false
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   add_index "locations", ["name"], name: "index_locations_on_name", unique: true
