@@ -31,18 +31,23 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "create from api" do
-    repo = User.create_or_update_from_api("fukajun")
-    assert repo.persisted?
-    assert_equal "fukajun", repo.login
+    user = User.create_or_update_from_api("fukajun")
+    assert user.persisted?
+    assert_equal "fukajun", user.login
   end
 
   test "update from api" do
-    repo = User.create_or_update_from_api("kennyj")
-    assert repo.persisted?
-    assert_equal "kennyj", repo.login
+    user = User.create_or_update_from_api("kennyj")
+    assert user.persisted?
+    assert_equal "kennyj", user.login
   end
 
   test "invalid user" do
     assert_raise(ActiveRecord::RecordNotFound) { User.create_or_update_from_api("yyyxxx") }
+  end
+
+  test "location" do
+    user = User.create_or_update_from_api("kennyj")
+    assert user.location.is_a?(Location)
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121219152544) do
+ActiveRecord::Schema.define(version: 20121219163232) do
 
   create_table "contributors", force: true do |t|
     t.integer  "owner_id"
@@ -46,12 +46,12 @@ ActiveRecord::Schema.define(version: 20121219152544) do
     t.string   "name"
     t.string   "company"
     t.string   "blog"
-    t.string   "location"
     t.string   "email"
     t.boolean  "hireable"
     t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "location_id"
   end
 
   add_index "owners", ["github_id"], name: "index_owners_on_github_id", unique: true

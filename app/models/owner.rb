@@ -2,6 +2,8 @@ class Owner < ActiveRecord::Base
   validates_presence_of   :login, :github_id, :type
   validates_uniqueness_of :login, :github_id
 
+  belongs_to :location
+
   def self.create_or_update_from_api(login, client = Github.client)
     remote = client.user(login)
 
@@ -14,7 +16,9 @@ class Owner < ActiveRecord::Base
     repo.name      = remote.name
     repo.company   = remote.company
     repo.blog      = remote.blog
-    repo.location  = remote.location
+    l = remote.location.to_s.downcase
+    location = l.blank? ? nil : Location.find_or_create_by(name: l)
+    repo.location  = location
     repo.email     = remote.email
     repo.hireable  = remote.hireable
     repo.bio       = remote.bio

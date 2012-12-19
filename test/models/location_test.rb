@@ -23,4 +23,8 @@ class LocationTest < ActiveSupport::TestCase
     @location.save
     assert Location::UNCODED, @location.status
   end
+
+  test "location has many owners" do
+    assert @location.owners.empty?
+  end
 end

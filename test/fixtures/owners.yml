@@ -10,7 +10,7 @@ kennyj:
   email: "kennyj@gmail.com"
   hireable: false
   bio: null
-  location: "osaka, japan"
+  location: osaka
 
 rails:
   login: "rails"
