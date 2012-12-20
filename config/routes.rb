@@ -1,5 +1,5 @@
 WhereAreYou::Application.routes.draw do
-  get '/:owner/:repo' => 'home#index'
+  get '/:owner/:repo(.:format)' => 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
