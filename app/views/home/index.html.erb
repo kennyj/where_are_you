@@ -33,7 +33,7 @@ $(document).ready(function() {
           zIndex:   -1 * index
         });
         var content = "<img src=\"" + person.avatar_url + "\" width=\"100pxi\" /><br/>" +
-                      "<label>name</label>: " + person.name + "<br/>" +
+                      "<label>name</label>: <a href=\"https://github.com/" + person.login + "?tab=activity\" target=\"_blank\">" + person.name + "</a><br/>" +
                       "<label>contributions</label>: <a href=\"https://github.com/<%= @repository.full_name %>/commits?author=" + person.login + "\" target=\"_blank\">" + person.contributions + "</a><br/>" +
                       "<label>location</label>: " + person.location + "<br/>" +
                       "<label>local time</label>: <span id=\"lt_"+ index + "\"></span><br/>"
