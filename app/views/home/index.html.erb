@@ -35,7 +35,7 @@ $(document).ready(function() {
         var content = "<img src=\"" + person.avatar_url + "\" width=\"100pxi\" /><br/>" +
                       "<label>name</label>: " + person.name + "<br/>" +
                       "<label>contributions</label>: <a href=\"https://github.com/<%= @repository.full_name %>/commits?author=" + person.login + "\" target=\"_blank\">" + person.contributions + "</a><br/>" +
-                      "<label>locatoin</label>: " + person.location + "<br/>" +
+                      "<label>location</label>: " + person.location + "<br/>" +
                       "<label>local time</label>: <span id=\"lt_"+ index + "\"></span><br/>"
         var info = new google.maps.InfoWindow({
           content: content
