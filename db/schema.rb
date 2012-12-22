@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121219163232) do
+ActiveRecord::Schema.define(version: 20121222150013) do
+
+  create_table "cities", force: true do |t|
+    t.integer  "geonameid"
+    t.string   "name"
+    t.string   "asciiname"
+    t.text     "alternatenames"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "feature_class"
+    t.string   "feature_code"
+    t.string   "country_code"
+    t.string   "cc2"
+    t.string   "admin1_code"
+    t.string   "admin2_code"
+    t.string   "admin3_code"
+    t.string   "admin4_code"
+    t.integer  "population"
+    t.integer  "elevation"
+    t.integer  "dem"
+    t.string   "timezone"
+    t.date     "modification_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cities", ["geonameid"], name: "index_cities_on_geonameid", unique: true
 
   create_table "contributors", force: true do |t|
     t.integer  "owner_id"
