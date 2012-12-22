@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121222150013) do
+ActiveRecord::Schema.define(version: 20121222160651) do
 
   create_table "cities", force: true do |t|
     t.integer  "geonameid"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20121222150013) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
+    t.integer  "city_id"
   end
 
   add_index "locations", ["name"], name: "index_locations_on_name", unique: true

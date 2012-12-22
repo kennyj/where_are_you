@@ -20,17 +20,43 @@ $(document).ready(function() {
     data: {},
     success: function(data) {
       $(data).each(function(index, person) {
-        title = person.name + " from \"" + person.location + "\""
-        pos  = new google.maps.LatLng(person.lat, person.lng);
-        icon = new google.maps.MarkerImage(
+        var title = person.name + " from \"" + person.location + "\""
+        var pos  = new google.maps.LatLng(person.lat, person.lng);
+        var icon = new google.maps.MarkerImage(
           person.avatar_url, null, null, null, new google.maps.Size(32, 32)
         );
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
           title:    title,
           position: pos,
           map:      map,
           icon:     icon,
           zIndex:   -1 * index
+        });
+        var content = "<img src=\"" + person.avatar_url + "\" width=\"100pxi\" /><br/>" +
+                      "<label>name</label>: " + person.name + "<br/>" +
+                      "<label>locatin</label>: " + person.location + "<br/>" +
+                      "<label>local time</label>: <span id=\"lt_"+ index + "\"></span><br/>"
+        var info = new google.maps.InfoWindow({
+          content: content
+        });
+        var timer = null;
+        var func = function() {
+          var d   = new Date();
+          var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+          var nd  = new Date(utc + (1000 * person.offset));
+          $("#lt_" + index).text("" + nd.getFullYear() + "-" +
+                                 (nd.getMonth() + 1) + "-" + 
+                                 (nd.getDate()) + " " +
+                                 (nd.getHours()) + ":" +
+                                 (nd.getMinutes()) + ":" +
+                                 (nd.getSeconds()));
+        }
+        google.maps.event.addListener(marker, 'click', function() {
+          info.open(map, marker);
+          timer = setInterval(func, 1000);
+        });
+        google.maps.event.addListener(info, 'closeclick', function() {
+          clearInterval(timer);
         });
       });
     },

@@ -3,6 +3,7 @@ require 'uri'
 Net::HTTP.version_1_2
 
 class Location < ActiveRecord::Base
+  belongs_to :city
   has_many :owners
 
   UNCODED = 0
@@ -19,6 +20,7 @@ class Location < ActiveRecord::Base
   def coded!
     Net::HTTP.start('maps.googleapis.com', 80) { |http|
       self.status = UNCODED
+      self.lat = self.lng = self.city = nil
       encoded = URI.escape(name)
       res = http.get "/maps/api/geocode/json?address=#{encoded}&sensor=false"
       if 200.to_s == res.code
@@ -28,6 +30,8 @@ class Location < ActiveRecord::Base
             location = json["results"][0]["geometry"]["location"]
             self.lat = location["lat"]
             self.lng = location["lng"]
+            self.city = City.limit(1).order("power(abs(latitude - #{self.lat}),2) + power(abs(longitude - #{self.lng}),2)")[0]
+            logger.debug "name: #{self.city.name} lat: #{self.lat} lng: #{self.lng}"
           else
             logger.debug "It seems that #{name} is invalid address: Status is #{json['status']}"
             self.status = ERROR

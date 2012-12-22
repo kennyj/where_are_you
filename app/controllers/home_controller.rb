@@ -21,6 +21,9 @@ class HomeController < ApplicationController
           }
           if l = c.owner.location
             person.update(location: l.name, lat: l.lat, lng: l.lng)
+           if c = l.city
+             person.update(offset: ActiveSupport::TimeZone[c.timezone].utc_offset)
+           end
           end
           person
         end
