@@ -17,7 +17,8 @@ class HomeController < ApplicationController
             contributions: c.contributions,
             name:          c.owner.name,
             login:         c.owner.login,
-            avatar_url:    c.owner.avatar_url
+            avatar_url:    c.owner.avatar_url,
+            blog:          c.owner.blog
           }
           if l = c.owner.location
             person.update(location: l.name, lat: l.lat, lng: l.lng)
