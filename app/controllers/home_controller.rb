@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        contribs = @repository.contributors.limit(300).includes(owner: :location)
+        contribs = @repository.contributors.limit(250).includes(owner: :location)
         people = contribs.map do |c|
           person = {
             contributions: c.contributions,
