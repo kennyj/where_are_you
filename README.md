@@ -12,6 +12,9 @@ Getting started
 7. RAILS_ENV=production bundle exec rake db:migrate
 8. Edit repository array in the db/seeds.rb.
    And RAILS_ENV=production bundle exec rake db:seed
-9. RAILS_ENV=production bundle exec rails s
-10. Browse http://yourhost:3000/
+9. RAILS_ENV=production bundle exec rake assets:precompile
+10. Edit config/environments/production.rb
+    config.serve_static_assets = true
+11. RAILS_ENV=production bundle exec rails s
+12. Browse http://yourhost:3000/
 
