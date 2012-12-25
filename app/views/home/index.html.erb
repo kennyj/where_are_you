@@ -34,7 +34,8 @@ $(document).ready(function() {
         });
         var content = "<img src=\"" + person.avatar_url + "\" width=\"100pxi\" /><br/>" +
                       "<label>name</label>: <a href=\"https://github.com/" + person.login + "?tab=activity\" target=\"_blank\">" + person.name + "</a><br/>" +
-                      "<label>contributions</label>: <a href=\"https://github.com/<%= @repository.full_name %>/commits?author=" + person.login + "\" target=\"_blank\">" + person.contributions + "</a><br/>"
+                      "<label>contributions</label>: <a href=\"https://github.com/<%= @repository.full_name %>/commits?author=" +
+                      person.login + "\" target=\"_blank\">" + person.contributions + "</a><br/>"
         if (person.blog != null) {
           content = content + "<label>blog</label>: <a href=\"" + person.blog + "\" target=\"_blank\">" + person.blog + "</a><br/>"
         }
@@ -55,11 +56,20 @@ $(document).ready(function() {
                                  (nd.getMinutes()) + ":" +
                                  (nd.getSeconds()));
         }
+        var isOpen = false;
         google.maps.event.addListener(marker, 'click', function() {
-          info.open(map, marker);
-          timer = setInterval(func, 1000);
+          if (!isOpen) {
+            info.open(map, marker);
+            timer = setInterval(func, 1000);
+            isOpen = true;
+          } else {
+            isOpen = false;
+            clearInterval(timer);
+            info.close();
+          }
         });
         google.maps.event.addListener(info, 'closeclick', function() {
+          isOpen = false;
           clearInterval(timer);
         });
       });
