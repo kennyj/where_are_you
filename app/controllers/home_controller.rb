@@ -28,8 +28,8 @@ class HomeController < ApplicationController
           end
           person
         end
-        # TODO lat/lng nilは抜く？
-        render json: people.to_json
+        # Remove people whose lat/lng are nil.
+        render json: people.select {|e| e.has_key?(:lat) && !e[:lat].nil? }.to_json
       }
     end
   end
