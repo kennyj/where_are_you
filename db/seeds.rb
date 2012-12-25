@@ -1,6 +1,5 @@
 # import cities from zip
 puts "Start importing city data."
-City.delete_all
 City.import!
 
 # load repo / contributors data from github api
