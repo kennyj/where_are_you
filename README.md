@@ -10,7 +10,7 @@ Getting started
 5. bundle update
 6. RAILS_ENV=production bundle exec rake db:create
 7. RAILS_ENV=production bundle exec rake db:migrate
-8. RAILS_ENV=production bundle exec rake db:seeds
+8. RAILS_ENV=production bundle exec rake db:seed
 9. RAILS_ENV=production bundle exec rails s
 10. Browse http://yourhost:3000/
 
