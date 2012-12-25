@@ -4,7 +4,7 @@ class City < ActiveRecord::Base
   def self.import!
     zip_file  = 'cities15000.zip'
     txt_file  = 'cities15000.txt'
-    `cd #{Dir.tmpdir}; wget http://download.geonames.org/export/dump/#{zip_file};  unzip -f #{zip_file}`
+    `cd #{Dir.tmpdir}; wget http://download.geonames.org/export/dump/#{zip_file};  unzip #{zip_file}`
     open(File.join(Dir.tmpdir, txt_file), "r:utf-8") do |f|
       City.transaction do
         City.delete_all
